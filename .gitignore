@@ -1,0 +1,16 @@
+# Logs
+logs
+*.log
+yarn-error.log*
+
+# Cache
+.temp
+.cache
+
+# Dependency
+*node_modules
+
+# Build
+dist
+
+
