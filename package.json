@@ -1,0 +1,24 @@
+{
+  "name": "classifieLeseCloud",
+  "version": "1.0.0",
+  "description": "what kind of LeSe is this?",
+  "main": "index.js",
+  "repository": "https://github.com/zhanghao-zhoushan/classifieLeseCloud",
+  "scripts": {
+    "commit": "git add . && git cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+  "author": "hao.zhang <735296233@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "commit-msg": "./validate-commit-msg.js"
+    }
+  }
+}

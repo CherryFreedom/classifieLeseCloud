@@ -1,6 +1,6 @@
 ## classifieLese
 
-what kind of lese is this?
+what kind of LeSe is this?
 
 ### Commitizen
 
@@ -15,7 +15,6 @@ yarn global add commitizen
 
 #### Use
 
-cd clint
 
 ```bash
 ## use git cz after git add .
@@ -26,3 +25,16 @@ npm commit
 ## use yarn
 yarn commit
 ```
+
+### Changelog
+
+#### Install
+
+```bash
+## use npm
+npm install -g conventional-changelog
+## yarn
+yarn global add conventional-changelog
+```
+
+#### Use
