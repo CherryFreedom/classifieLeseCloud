@@ -6,15 +6,15 @@ export default class Login extends Component {
     context: {}
   }
 
-  componentWillMount() {}
+  componentWillMount () { }
 
-  componentDidMount() {}
+  componentDidMount () { }
 
-  componentWillUnmount() {}
+  componentWillUnmount () { }
 
-  componentDidShow() {}
+  componentDidShow () { }
 
-  componentDidHide() {}
+  componentDidHide () { }
 
   getLogin = () => {
     Taro.cloud
@@ -29,7 +29,7 @@ export default class Login extends Component {
       })
   }
 
-  render() {
+  render () {
     return (
       <View className='index'>
         <Button onClick={this.getLogin}>获取登录云函数</Button>
