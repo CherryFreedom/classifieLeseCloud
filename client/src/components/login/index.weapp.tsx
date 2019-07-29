@@ -17,6 +17,9 @@ export default class Login extends Component {
   componentDidHide() {}
 
   getLogin = () => {
+    Taro.navigateTo({
+      url: '/pages/my/index'
+    })
     Taro.cloud
       .callFunction({
         name: "login",
