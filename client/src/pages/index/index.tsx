@@ -2,7 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
-import Login from '../../components/login/index.weapp'
+import Home from '../../components/home/index.weapp'
 
 export default class Index extends Component {
 
@@ -30,7 +30,7 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Login/>
+        <Home/>
       </View>
     )
   }
