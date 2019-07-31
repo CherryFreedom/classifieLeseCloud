@@ -1,9 +1,9 @@
-import Taro, { Component } from "@tarojs/taro"
-import { View, Text, Button } from "@tarojs/components"
+import Taro, { Component } from '@tarojs/taro'
+import { View, Text, Button } from '@tarojs/components'
 
 export default class Login extends Component {
   state = {
-    context: {}
+    context: {},
   }
 
   componentWillMount() {}
@@ -16,25 +16,20 @@ export default class Login extends Component {
 
   componentDidHide() {}
 
-  getLogin = () => {
-    Taro.navigateTo({
-      url: '/pages/my/index'
+  async getLogin() {
+    const res = await Taro.cloud.callFunction({
+      name: 'login',
+      data: {},
     })
-    Taro.cloud
-      .callFunction({
-        name: "login",
-        data: {}
-      })
-      .then(res => {
-        this.setState({
-          context: res.result
-        })
-      })
+    console.log(res)
+    this.setState({
+      context: res.result
+    })
   }
 
   render() {
     return (
-      <View className='index'>
+      <View className="index">
         <Button onClick={this.getLogin}>获取登录云函数</Button>
         <Text>context：{JSON.stringify(this.state.context)}</Text>
       </View>

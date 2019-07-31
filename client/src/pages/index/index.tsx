@@ -3,8 +3,6 @@ import { View, Text } from '@tarojs/components'
 import { AtNoticebar } from 'taro-ui'
 import './index.scss'
 
-import Login from '../../components/login/index.weapp'
-
 export default class Index extends Component {
   /**
    * 指定config的类型声明为: Taro.Config
@@ -32,7 +30,6 @@ export default class Index extends Component {
       <View className="index">
         <Text>首页</Text>
         <AtNoticebar marquee icon="volume-plus">你是什么垃圾？</AtNoticebar>
-        <Login />
       </View>
     )
   }

@@ -1,37 +1,47 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { useState, getUserInfo } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
 import Login from '../../components/login/index.weapp'
 
-export default class Index extends Component {
+export default function Index() {
+  const [userInfo, setUserInfo] = useState({})
 
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
-  config: Config = {
-    navigationBarTitleText: '首页'
+  Taro.getSetting({
+    success(res) {
+      if (res.authSetting['scope.userInfo']) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        Taro.getUserInfo({
+          success(res) {
+            setUserInfo(res)
+            console.log(res.userInfo)
+          },
+        })
+      }
+    },
+    fail(res) {
+      console.log(res)
+    },
+  })
+
+  const getUserInfo = () => {
+    // 查看是否授权
   }
 
-  componentWillMount () { }
+  return (
+    <View>
+      <Text onClick={getUserInfo}>我的</Text>
+      {userInfo ? (
+        <Login />
+      ) : (
+        <View>
+          <Text>{userInfo.username}</Text>
+        </View>
+      )}
+    </View>
+  )
+}
 
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    return (
-      <View className='index'>
-        <Text>我的</Text>
-      </View>
-    )
-  }
+Index.config = {
+  navigationBarTitleText: '我的',
 }
