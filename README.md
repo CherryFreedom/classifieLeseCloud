@@ -1,6 +1,6 @@
 ## classifieLese
 
-what kind of *LeSe* is this?
+what kind of *LeSe* is this ?
 
 ### Commitizen
 
