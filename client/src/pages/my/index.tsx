@@ -24,20 +24,14 @@ export default function Index() {
     },
   })
 
-  const getUserInfo = () => {
-    // 查看是否授权
-  }
-
   return (
     <View>
-      <Text onClick={getUserInfo}>我的</Text>
-      {userInfo ? (
-        <Login />
-      ) : (
-        <View>
-          <Text>{userInfo.username}</Text>
-        </View>
-      )}
+      <Text>我的</Text>
+      <Login />
+      <View>
+        1
+        <Text>{userInfo}</Text>
+      </View>
     </View>
   )
 }

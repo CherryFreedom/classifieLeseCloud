@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtNoticebar } from 'taro-ui'
 import './index.scss'
 
@@ -30,9 +30,10 @@ export default class Index extends Component {
   render() {
     return (
       <View className="index">
-        <Text>首页</Text>
-        <AtNoticebar marquee icon="volume-plus">你是什么垃圾？</AtNoticebar>
-        <Home/>
+        <AtNoticebar marquee icon="volume-plus">
+          你是什么垃圾？
+        </AtNoticebar>
+        <Home />
       </View>
     )
   }
