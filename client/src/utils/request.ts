@@ -42,9 +42,13 @@ export const getGarbage = (word, num = 10, page = 1) => {
         header: {
           'content-type': 'application/json'
         }
-      }).then(res => {
+      }).then(({ data: { code, newslist } }) => {
+        if (code === 200) {
+          resolve(newslist)
+        } else {
+          reject(code)
+        }
         Taro.hideLoading()
-        resolve(res.data)
       })
     } else {
       Taro.hideLoading()

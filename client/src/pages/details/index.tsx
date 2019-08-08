@@ -2,11 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
-import LeseHeader from '../../components/header/index.weapp'
-import LeseContent from '../../components/content/index.weapp'
-
-
-export default class Index extends Component {
+export default class Details extends Component {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -16,7 +12,7 @@ export default class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: 'Details'
   }
 
   componentWillMount () { }
@@ -31,9 +27,8 @@ export default class Index extends Component {
 
   render () {
     return (
-      <View className='index'>
-        <LeseHeader />
-        <LeseContent />
+      <View className='details'>
+        Details
       </View>
     )
   }
