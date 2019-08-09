@@ -28,8 +28,8 @@ export default class Login extends Component {
     })
   }
 
-  handleGetGarbage = (value: string) => {
-    getGarbage(value)
+  handleGetGarbage = (word: string) => {
+    getGarbage({word})
       .then(newList => this.setState({ newList }))
   }
 
