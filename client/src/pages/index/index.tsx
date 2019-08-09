@@ -1,5 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { AtTabBar } from 'taro-ui'
 import './index.scss'
 
 import LeseHeader from '../../components/header/index.weapp'
@@ -19,6 +20,10 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  satte = {
+    current: ''
+  }
+
   componentWillMount () { }
 
   componentDidMount () { }
@@ -28,6 +33,10 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  handleClick () {
+    
+  }
 
   render () {
     return (
