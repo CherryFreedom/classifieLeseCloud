@@ -3,6 +3,11 @@ import { View, Text, Button } from "@tarojs/components"
 import { AtInput, AtForm } from 'taro-ui'
 import './index.scss'
 
+interface GarbageClassifyItem {
+  type: number
+  name: string
+}
+
 export default class Content extends Component {
   componentWillMount () { }
 
@@ -15,18 +20,39 @@ export default class Content extends Component {
   componentDidHide () { }
 
   handleNavigate = (page: number) => {
-    Taro.navigateTo({ url: '/pages/detail/index' }).then(() => {
+    Taro.navigateTo({ url: '/pages/classify/index' }).then(() => {
       console.log(page)
     })
   }
 
   render () {
+    const garbageClassify = [
+      {
+        type: 1,
+        name: '可回收物'
+      },
+      {
+        type: 2,
+        name: '有害垃圾'
+      },
+      {
+        type: 3,
+        name: '湿垃圾'
+      },
+      {
+        type: 4,
+        name: '干垃圾'
+      }
+    ]
     return (
       <View className='content'>
-        <View onClick={this.handleNavigate.bind(this, 1)}>可回收物</View>
-        <View onClick={this.handleNavigate.bind(this, 2)}>有害垃圾</View>
-        <View onClick={this.handleNavigate.bind(this, 3)}>湿垃圾</View>
-        <View onClick={this.handleNavigate.bind(this, 4)}>干垃圾</View>
+        {
+          garbageClassify.map((garbage: GarbageClassifyItem) => {
+            return (
+              <View className="garbage__nav" key={garbage.type} onClick={this.handleNavigate.bind(this, garbage.type)}>{garbage.name}</View>
+            )
+          })
+        }
       </View>
     )
   }

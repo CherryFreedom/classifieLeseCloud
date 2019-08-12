@@ -2,7 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
-export default class Details extends Component {
+export default class Hot extends Component {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -13,7 +13,7 @@ export default class Details extends Component {
    */
 
   config: Config = {
-    navigationBarTitleText: '详情'
+    navigationBarTitleText: '热门搜索'
   }
 
   componentWillMount () { }
@@ -28,8 +28,8 @@ export default class Details extends Component {
 
   render () {
     return (
-      <View className='detail layout'>
-        Detail
+      <View className='hot layout'>
+        Hot
       </View>
     )
   }

@@ -1,7 +1,5 @@
 .header {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
+  padding: 20px 0;
   height: 300px;
 }
 
@@ -10,4 +8,10 @@
   border-radius: 20px;
   padding: 5px;
   background: red;
+}
+
+.hot__icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
