@@ -27,21 +27,21 @@ Taro.addInterceptor(Taro.interceptors.timeoutInterceptor)
 
 interface RequestParams {
   url: string,
-  params: any
+  data: any
 }
 
 interface GarbageParams {
-  word: string,
-  num?: number,
+  word: string
+  num?: number
   page?: number
 }
 
 interface HotGarbageParams {
-  type: number,
+  type?: 0 | 1 | 2 | 3
   date?: string
 }
 
-const request = ({ url, params, ...config }: RequestParams) => {
+const request = ({ url, data, ...config }: RequestParams) => {
   Taro.showLoading({
     title: 'loading'
   })
@@ -50,7 +50,7 @@ const request = ({ url, params, ...config }: RequestParams) => {
       url: `${BASE_URL}${url}`,
       data: {
         key: API_KEY,
-        ...params
+        ...data
       },
       header: {
         'content-type': 'application/json'
@@ -74,14 +74,15 @@ const request = ({ url, params, ...config }: RequestParams) => {
  * @param {number} page 翻页
  */
 export const getGarbage = ({ word, num = 10, page = 1 }: GarbageParams) => {
-  return request({ url: 'lajifenlei/', params: { word, num, page } }).then(({ newslist }) => newslist)
+  if (!word) return
+  return request({ url: 'lajifenlei/', data: { word, num, page } }).then(({ newslist }) => newslist)
 }
 
 /**
  * 根据废弃物类型和日期查询热门搜索垃圾
- * @param {number} type 垃圾类型 0为可回收、1为有害、2为厨余(湿)、3为其他(干)
+ * @param {number} type 垃圾类型 0 可回收、1 有害、2 厨余(湿)、3 其他(干)
  * @param {string} date 日期 eg. 20190809
  */
-export const getHotGarbage = ({ type, date }: HotGarbageParams) => {
-  return request({ url: 'hotlajifenlei/', params: { type, date } }).then(({ newslist }) => newslist)
+export const getHotGarbage = (data: HotGarbageParams = {}) => {
+  return request({ url: 'hotlajifenlei/', data }).then(({ newslist }) => newslist)
 }

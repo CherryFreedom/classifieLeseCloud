@@ -1,16 +1,19 @@
 import Taro, { Component } from "@tarojs/taro"
-import { View, Text } from "@tarojs/components"
+import { View } from "@tarojs/components"
 import { AtSearchBar, AtTag } from 'taro-ui'
 
 import { getGarbage } from '../../utils/request'
+import { transGarbageClassify } from '../../utils'
+
 import './index.scss'
 
+const initialState = { word: '榴莲', newList: [] }
+
+type State = Readonly<typeof initialState>
 
 export default class Header extends Component {
-  state = {
-    word: '榴莲',
-    newList: []
-  }
+
+  readonly state: State = initialState
 
   componentWillMount () { }
 
@@ -39,14 +42,14 @@ export default class Header extends Component {
   }
 
   handleJumpToDetailPage = () => {
-    Taro.navigateTo({ url: '/pages/detail/index' }).then(() => {
-      console.log('/pages/detail/index')
-    })
+    Taro.navigateTo({ url: '/pages/detail/index' })
   }
 
   render () {
-    const listItems = this.state.newList.map((item: any, i: number) => {
-      return <View onClick={this.handleJumpToDetailPage} key={i}>{item.name} {item.type}</View>
+    const listItems = this.state.newList.map((item: any) => {
+      return <View onClick={this.handleJumpToDetailPage} key={item.type}>
+        {item.name} {transGarbageClassify(item.type)}
+      </View>
     })
 
     return (
@@ -62,7 +65,7 @@ export default class Header extends Component {
         <View className="hot__icon">
           <AtTag size="small" type='primary' circle onClick={this.handleJumpToHotPage}>Hot</AtTag>
         </View>
-        
+
         {
           listItems
         }

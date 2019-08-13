@@ -1,14 +1,10 @@
 import Taro, { Component } from "@tarojs/taro"
-import { View, Text, Button } from "@tarojs/components"
-import { AtInput, AtForm } from 'taro-ui'
+import { View } from "@tarojs/components"
+import { garbageClassify, GarbageClassifyItem } from '../../utils/config'
 import './index.scss'
 
-interface GarbageClassifyItem {
-  type: number
-  name: string
-}
-
 export default class Content extends Component {
+
   componentWillMount () { }
 
   componentDidMount () { }
@@ -20,30 +16,11 @@ export default class Content extends Component {
   componentDidHide () { }
 
   handleNavigate = (page: number) => {
-    Taro.navigateTo({ url: '/pages/classify/index' }).then(() => {
-      console.log(page)
-    })
+    Taro.navigateTo({ url: '/pages/classify/index' })
   }
 
   render () {
-    const garbageClassify = [
-      {
-        type: 1,
-        name: '可回收物'
-      },
-      {
-        type: 2,
-        name: '有害垃圾'
-      },
-      {
-        type: 3,
-        name: '湿垃圾'
-      },
-      {
-        type: 4,
-        name: '干垃圾'
-      }
-    ]
+
     return (
       <View className='content'>
         {
