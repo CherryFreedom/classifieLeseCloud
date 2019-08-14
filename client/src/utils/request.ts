@@ -1,15 +1,8 @@
-/*
- * @Author: hao.zhang
- * @Date: 2019-08-08 20:09:35
- * @LastEditors: hao.zhang
- * @LastEditTime: 2019-08-09 18:47:01
- */
 import Taro from "@tarojs/taro"
+import { RequestParams, GarbageParams, HotGarbageParams } from '../types/params'
+import { BASE_URL, API_KEY } from './constant'
 
-const BASE_URL = 'https://api.tianapi.com/txapi/'
-const API_KEY = '921042372c476dc208b1d6819d8f1511'
-
-// 拦截器
+// Taro request interceptor
 const interceptor = function (chain) {
   const requestParams = chain.requestParams
   const { method, data, url } = requestParams
@@ -24,22 +17,6 @@ const interceptor = function (chain) {
 Taro.addInterceptor(interceptor)
 Taro.addInterceptor(Taro.interceptors.logInterceptor)
 Taro.addInterceptor(Taro.interceptors.timeoutInterceptor)
-
-interface RequestParams {
-  url: string,
-  data: any
-}
-
-interface GarbageParams {
-  word: string
-  num?: number
-  page?: number
-}
-
-interface HotGarbageParams {
-  type?: 0 | 1 | 2 | 3
-  date?: string
-}
 
 const request = ({ url, data, ...config }: RequestParams) => {
   Taro.showLoading({
@@ -70,7 +47,7 @@ const request = ({ url, data, ...config }: RequestParams) => {
 /**
  * 根据废弃物名称查询垃圾类型
  * @param {string} word 废弃物名称
- * @param {number} num 返回数量
+ * @param {number} num  返回数量
  * @param {number} page 翻页
  */
 export const getGarbage = ({ word, num = 10, page = 1 }: GarbageParams) => {

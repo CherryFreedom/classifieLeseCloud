@@ -1,11 +1,6 @@
-export interface GarbageClassifyItem {
-  type: number
-  name: string
-}
+import { GarbageClassifyArray } from '../types'
 
-type GarbageClassify = GarbageClassifyItem[]
-
-export const garbageClassify: GarbageClassify = [
+export const garbageClassifyArray: GarbageClassifyArray = [
   {
     type: 0,
     name: '可回收物'

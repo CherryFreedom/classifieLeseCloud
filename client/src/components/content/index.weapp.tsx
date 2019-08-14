@@ -1,6 +1,7 @@
 import Taro, { Component } from "@tarojs/taro"
 import { View } from "@tarojs/components"
-import { garbageClassify, GarbageClassifyItem } from '../../utils/config'
+import { garbageClassifyArray } from '../../utils/config'
+import { GarbageClassify } from '../../types/index'
 import './index.scss'
 
 export default class Content extends Component {
@@ -24,7 +25,7 @@ export default class Content extends Component {
     return (
       <View className='content'>
         {
-          garbageClassify.map((garbage: GarbageClassifyItem) => {
+          garbageClassifyArray.map((garbage: GarbageClassify) => {
             return (
               <View className="garbage__nav" key={garbage.type} onClick={this.handleNavigate.bind(this, garbage.type)}>{garbage.name}</View>
             )

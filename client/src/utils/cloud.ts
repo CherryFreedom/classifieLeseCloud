@@ -1,14 +1,6 @@
 import Taro from "@tarojs/taro"
-
+import { GarbageInfo } from '../types'
 const db = Taro.cloud.database()
-
-export interface GarbageInfo {
-  contain: string
-  explain: string
-  name: string
-  tip: string
-  type: number
-}
 
 /**
  * Insert garbage info into database

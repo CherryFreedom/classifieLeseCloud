@@ -4,10 +4,16 @@ import { AtSearchBar, AtTag } from 'taro-ui'
 
 import { getGarbage } from '../../utils/request'
 import { transGarbageClassify } from '../../utils'
+import { GarbageInfoArray } from '../../types'
 
 import './index.scss'
 
-const initialState = { word: '榴莲', newList: [] }
+interface InitialState {
+  word: string
+  newList: GarbageInfoArray
+}
+
+const initialState: InitialState = { word: '榴莲', newList: [] }
 
 type State = Readonly<typeof initialState>
 

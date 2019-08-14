@@ -1,6 +1,6 @@
-import { garbageClassify } from './config'
+import { garbageClassifyArray } from './config'
 
 export const transGarbageClassify = (type) => {
-  const garbage = garbageClassify[type] || {}
+  const garbage = garbageClassifyArray[type] || {}
   return garbage.name || ''
 }

@@ -2,11 +2,11 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import { getHotGarbage } from '../../utils/request'
-
+import { GarbageClassifyHotArray } from '../../types'
 import './index.scss'
 
-const initialState = { hotList: [] }
-
+const hotList: GarbageClassifyHotArray = []
+const initialState = { hotList }
 type State = Readonly<typeof initialState>
 
 export default class Hot extends Component {
@@ -32,10 +32,11 @@ export default class Hot extends Component {
   componentDidHide () { }
 
   render () {
+    const { hotList } = this.state
     return (
       <View className='hot layout'>
         {
-          this.state.hotList.map(hot => {
+          hotList.map(hot => {
             return <View key={hot.name}>
               {hot.name}
             </View>
