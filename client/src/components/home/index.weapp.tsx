@@ -92,7 +92,7 @@ export default class Login extends Component {
           onActionClick={this.handleGetGarbage.bind(this, value)}
         />
         <AtList>
-          {newList.map((item, index) => (
+          {newList.map((item: any, index) => (
             <AtListItem
               key={index}
               title={item.name}
@@ -106,11 +106,10 @@ export default class Login extends Component {
         <AtCard
           className="result"
           note="查询结果"
-          extra={result.explain}
           title={result.name}
           thumb="http://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png"
         >
-          这也是内容区 可以随意定义功能
+          {result.explain}
         </AtCard>
 
         {/* <Button onClick={this.addTodo}>插入数据库</Button>
