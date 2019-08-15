@@ -8,7 +8,12 @@ export default class Details extends Component {
     navigationBarTitleText: '详情'
   }
 
-  componentWillMount () { }
+  componentWillMount () {
+    const item = this.$router.params.item
+    this.setState({
+      item
+    })
+  }
 
   componentDidMount () { }
 
@@ -19,9 +24,13 @@ export default class Details extends Component {
   componentDidHide () { }
 
   render () {
+    console
     return (
       <View className='detail layout'>
         Detail
+        <View>
+          {item}
+        </View>
       </View>
     )
   }

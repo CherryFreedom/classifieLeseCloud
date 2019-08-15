@@ -50,8 +50,7 @@ const request = ({ url, data, ...config }: RequestParams) => {
  * @param {number} num  返回数量
  * @param {number} page 翻页
  */
-export const getGarbage = ({ word, num = 10, page = 1 }: GarbageParams) => {
-  if (!word) return
+export const getGarbage = ({ word, num = 10, page = 1 }: GarbageParams): any => {
   return request({ url: 'lajifenlei/', data: { word, num, page } }).then(({ newslist }) => newslist)
 }
 
