@@ -1,65 +1,115 @@
-## classifieLese
+# classifieLese
 
-what kind of *LeSe* is this ?
+what kind of _LeSe_ is this ?
 
-### Commitizen
+## Features
 
-- feat：新功能（feature）
-- fix：修补 bug
-- docs：文档（documentation）
-- style： 格式（不影响代码运行的变动）
-- refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
-- test：增加测试
-- chore：构建过程或辅助工具的变动
+- [ ] use hooks
+- [ ] use MobX
+- [ ] 文案
+- [ ] 云函数功能
+- [ ] UI 设计
+- [ ] index 页面样式
+- [ ] hot 热门搜索页面样式（包括 hot 入口）
+- [ ] detail 详情页面垃圾详情样式
+- [ ] classify 分类介绍页面样式
 
-#### Install
+## Commitizen
+
+When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time.
+
+- feat: A new feature
+- fix: A bug fix
+- docs: Documentation only changes
+- style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- refactor: A code change that neither fixes a bug nor adds a feature
+- perf: A code change that improves performance
+- test: Adding missing tests or correcting existing tests
+- build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- ci: Changes to our CI configuration files and - scripts (example scopes: Travis, Circle, BrowserStack, - SauceLabs)
+- chore: Other changes that don't modify src or test - files
+- revert: Reverts a previous commit
+
+### Install
+
+Using npm:
 
 ```bash
-## use npm
-npm install -g commitizen
-## use yarn
-yarn global add commitizen
+$ npm install -g commitizen
 ```
 
-#### Use
+Using yarn:
 
 ```bash
-## use git cz after git add .
-git add . && git cz
-## add script commit in package.json.
-## use  npm
-npm commit
-## use yarn
-yarn commit
+$ yarn global add commitizen
 ```
 
-### Changelog
+### Use
 
-#### Install
+If you want to submit all changes.
+
+Using npm:
 
 ```bash
-## use npm
-npm install -g conventional-changelog
-## use yarn
-yarn global add conventional-changelog
+$ npm commit
 ```
 
-`command not found` when you `yarn changelog`.
+Using yarn:
 
 ```bash
-## use npm
-npm install -g conventional-changelog-cli
-## use yarn
-yarn global add conventional-changelog-cli
+$ yarn commit
 ```
 
-#### Use
+If you want to submit some changes, use `git cz` after `git add [file]`
 
 ```bash
-## use npm
-npm run changelog
-## use yarn
-yarn changelog
+git add [file] && git cz
+```
+
+## Changelog
+
+Generate a changelog from git metadata.
+
+### Installing
+
+Using npm:
+
+```bash
+$ npm install -g conventional-changelog
+```
+
+Using yarn:
+
+```bash
+$ yarn global add conventional-changelog
+```
+
+**If `command not found` when you `yarn changelog`.**
+
+Using npm:
+
+```bash
+$ npm install -g conventional-changelog-cli
+```
+
+Using yarn:
+
+```bash
+$ yarn global add conventional-changelog-cli
+```
+
+### Use
+
+Using npm:
+
+```bash
+$ npm run changelog
+```
+
+Using yarn:
+
+```bash
+$ yarn changelog
 ```
 
 ## Reference
@@ -67,3 +117,6 @@ yarn changelog
 - [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 - [微信 | 云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 - [Taro 规范](https://taro-docs.jd.com/taro/docs/spec-for-taro.html)
+- [Taro UI](https://taro-ui.jd.com/#/docs/introduction)
+- [Taro Hooks](https://taro-docs.jd.com/taro/docs/hooks.html)
+- [Taro MobX](https://taro-docs.jd.com/taro/docs/mobx.html)
