@@ -1,28 +1,37 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { setNavigationBarTitle, useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+
+import { GarbageClassify } from '../../types'
+import { transGarbageClassify } from '../../utils'
+import { garbageClassifyArray } from '../../utils/config'
+
 import './index.scss'
 
-export default class Classify extends Component {
+export const initialState: GarbageClassify = {
+  name: '',
+  type: -1,
+  explain: '',
+  contain: '',
+  tip: ''
+}
 
-  config: Config = {
-    navigationBarTitleText: '分类介绍'
-  }
+export default function Classify () {
+  const [introduce, setIntroduce] = useState(initialState)
 
-  componentWillMount () { }
+  setNavigationBarTitle({ title: '分类介绍' })
 
-  componentDidMount () { }
+  useEffect(() => {
+    const { type } = this.$router.params
+    setIntroduce(garbageClassifyArray[type])
+  }, [])
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    return (
-      <View className='classify layout'>
-        classify
-      </View>
-    )
-  }
+  return (
+    <View className='classify layout'>
+      <View>{introduce.name}</View>
+      <View>{transGarbageClassify(introduce.type)}</View>
+      <View>{introduce.explain}</View>
+      <View>{introduce.contain}</View>
+      <View>{introduce.tip}</View>
+    </View>
+  )
 }

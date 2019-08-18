@@ -1,37 +1,30 @@
-import Taro, { Component } from "@tarojs/taro"
+import Taro from "@tarojs/taro"
 import { View } from "@tarojs/components"
-import { garbageClassifyArray } from '../../utils/config'
+
 import { GarbageClassify } from '../../types/index'
+
 import './index.scss'
 
-export default class Content extends Component {
-
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  handleNavigate = (page: number) => {
-    Taro.navigateTo({ url: '/pages/classify/index' })
+export default function LeseContent (props) {
+  const { garbageClassifyArray = [] } = props
+  const handleNavigate = (type: number) => {
+    Taro.navigateTo({ url: `/pages/classify/index?type=${type}` })
   }
 
-  render () {
-
-    return (
-      <View className='content'>
-        {
-          garbageClassifyArray.map((garbage: GarbageClassify) => {
-            return (
-              <View className="garbage__nav" key={garbage.type} onClick={this.handleNavigate.bind(this, garbage.type)}>{garbage.name}</View>
-            )
-          })
-        }
-      </View>
-    )
-  }
+  return (
+    <View className='content'>
+      {
+        garbageClassifyArray.map((garbage: GarbageClassify) => {
+          return (
+            <View
+              className="garbage__nav"
+              key={garbage.type}
+              onClick={() => handleNavigate(garbage.type)}>
+              {garbage.name}
+            </View>
+          )
+        })
+      }
+    </View>
+  )
 }

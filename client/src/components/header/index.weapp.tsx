@@ -1,89 +1,81 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtSearchBar, AtTag, AtList, AtListItem } from 'taro-ui'
 
+import { GarbageClassify, GarbageInfoArray } from '../../types'
 import { getGarbage } from '../../utils/request'
 import { transGarbageClassify } from '../../utils'
-import { GarbageInfoArray } from '../../types'
 
 import './index.scss'
+
 
 interface InitialState {
   word: string
   newList: GarbageInfoArray
 }
 
-const initialState: InitialState = { word: '榴莲', newList: [] }
+const initialState: InitialState = { word: '苹果', newList: [] }
 
-type State = Readonly<typeof initialState>
+export default function LeseHeader () {
+  const [word, setWord] = useState(initialState.word)
+  const [newList, setNewList] = useState(initialState.newList)
 
-export default class Header extends Component {
-  readonly state: State = initialState
+  useEffect(() => {
 
-  componentWillMount() {}
+  })
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  onChange = word => {
-    this.setState({ word })
-  }
-
-  handleGetGarbage = () => {
-    const { word } = this.state
+  const handleGetGarbage = () => {
     if (!word) return
-    getGarbage({ word }).then(newList => this.setState({ newList }))
+    getGarbage({ word }).then(newList => setNewList(newList))
   }
 
-  handleJumpToHotPage = () => {
-    Taro.navigateTo({ url: '/pages/hot/index' }).then(() => {
-      console.log('/pages/hot/index')
-    })
+  const handleJumpToHotPage = () => {
+    Taro.navigateTo({ url: '/pages/hot/index' })
   }
 
-  handleJumpToDetailPage = item => {
-    Taro.navigateTo({ url: '/pages/detail/index?item=' + JSON.stringify(item) })
+  const handleJumpToDetailPage = garbage => {
+    Taro.navigateTo({ url: '/pages/detail/index?garbage=' + JSON.stringify(garbage) })
   }
 
-  handleListItemClick = item => {
-    this.setState({ result: item })
-  }
-
-  render() {
-    const { word, newList } = this.state
-
+  const renderNewList = () => {
     return (
-      <View className="header">
-        {/* 搜索 + 联想 */}
-        <AtSearchBar value={word} showActionButton placeholder="请输入垃圾名称" onChange={this.onChange} onActionClick={this.handleGetGarbage} />
-        {word && (
-          <View className="scroll-list">
-            <AtList>
-              {newList.map((item: any, index) => (
-                <AtListItem
-                  key={index}
-                  title={item.name}
-                  extraText={transGarbageClassify(item.type)}
-                  arrow="right"
-                  data-item={item}
-                  onClick={() => this.handleJumpToDetailPage(item)}
-                />
-              ))}
-            </AtList>
-          </View>
-        )}
-
-        <View className="hot__icon">
-          <AtTag size="small" type="primary" circle onClick={this.handleJumpToHotPage}>
-            Hot
-          </AtTag>
-        </View>
+      <View className="scroll-list">
+        <AtList>
+          {newList.map((garbage: GarbageClassify) => (
+            <AtListItem
+              key={garbage.name}
+              title={garbage.name}
+              extraText={transGarbageClassify(garbage.type)}
+              arrow="right"
+              data-item={garbage}
+              onClick={() => handleJumpToDetailPage(garbage)}
+            />
+          ))}
+        </AtList>
       </View>
     )
   }
+
+  const renderHotIcon = () => {
+    return (
+      <View className="hot__icon">
+        <AtTag size="small" type="primary" circle onClick={handleJumpToHotPage}>
+          Hot
+        </AtTag>
+      </View>
+    )
+  }
+
+  return (
+    <View className="header">
+      {/* 搜索 + 联想 */}
+      <AtSearchBar value={word} showActionButton placeholder="请输入垃圾名称" onChange={setWord} onActionClick={handleGetGarbage} />
+      {
+        renderNewList()
+      }
+      {
+        renderHotIcon()
+      }
+    </View>
+  )
 }

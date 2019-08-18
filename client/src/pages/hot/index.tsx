@@ -1,48 +1,35 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import Taro, { setNavigationBarTitle, useEffect, useState } from '@tarojs/taro'
+import { View, Text } from '@tarojs/components'
 
-import { getHotGarbage } from '../../utils/request'
 import { GarbageClassifyHotArray } from '../../types'
+import { getHotGarbage } from '../../utils/request'
+import { transGarbageClassify } from '../../utils'
+
 import './index.scss'
 
 const hotList: GarbageClassifyHotArray = []
 const initialState = { hotList }
-type State = Readonly<typeof initialState>
 
-export default class Hot extends Component {
+export default function Hot () {
+  const [hotList, setHotList] = useState(initialState.hotList)
 
-  readonly state: State = initialState
+  setNavigationBarTitle({ title: '热门搜索' })
 
-  config: Config = {
-    navigationBarTitleText: '热门搜索'
-  }
+  useEffect(() => {
+    getHotGarbage().then(hotList => setHotList(hotList))
+  }, [])
 
-  componentWillMount () { }
-
-  componentDidMount () {
-    getHotGarbage().then(res => {
-      this.setState({ hotList: res })
-    })
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    const { hotList } = this.state
-    return (
-      <View className='hot layout'>
-        {
-          hotList.map(hot => {
-            return <View key={hot.name}>
-              {hot.name}
-            </View>
-          })
-        }
-      </View>
-    )
-  }
+  return (
+    <View className='hot layout'>
+      {
+        hotList.map(hot => (
+          <View key={hot.name}>
+            <Text>{hot.name}</Text>
+            <Text>{transGarbageClassify(hot.type)}</Text>
+            <Text>{hot.index}</Text>
+          </View>
+        ))
+      }
+    </View>
+  )
 }
