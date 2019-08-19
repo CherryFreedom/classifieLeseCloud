@@ -1,6 +1,6 @@
 {
   "name": "classifieLeseCloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "what kind of LeSe is this?",
   "main": "index.js",
   "repository": "https://github.com/zhanghao-zhoushan/classifieLeseCloud",

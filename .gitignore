@@ -15,7 +15,7 @@
 # End of https://www.gitignore.io/api/visualstudiocode
 
 ### Logs ###
-*.log
+yarn-error.log
 
 ### Taro Cache ###
 .temp
