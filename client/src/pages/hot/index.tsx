@@ -1,4 +1,4 @@
-import Taro, { setNavigationBarTitle, useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
 import { GarbageClassifyHotArray } from '../../types'
@@ -12,8 +12,6 @@ const initialState = { hotList }
 
 export default function Hot () {
   const [hotList, setHotList] = useState(initialState.hotList)
-
-  setNavigationBarTitle({ title: '热门搜索' })
 
   useEffect(() => {
     getHotGarbage().then(hotList => setHotList(hotList))
@@ -32,4 +30,8 @@ export default function Hot () {
       }
     </View>
   )
+}
+
+Hot.config = {
+  navigationBarTitleText: '热门搜索'
 }

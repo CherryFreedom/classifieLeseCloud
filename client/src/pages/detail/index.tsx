@@ -1,4 +1,4 @@
-import Taro, { setNavigationBarTitle, useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import { GarbageClassify } from '../../types'
@@ -18,9 +18,6 @@ export default function Detail () {
   const [garbage, setGarbage] = useState(initialState)
   const { params } = useRouter()
 
-
-  setNavigationBarTitle({ title: '详情' })
-
   useEffect(() => {
     setGarbage(JSON.parse(params.garbage))
   }, [])
@@ -36,4 +33,8 @@ export default function Detail () {
       </View>
     </View>
   )
+}
+
+Detail.config = {
+  navigationBarTitleText: '详情'
 }

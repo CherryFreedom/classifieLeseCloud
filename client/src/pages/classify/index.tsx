@@ -1,4 +1,4 @@
-import Taro, { setNavigationBarTitle, useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import { GarbageClassify } from '../../types'
@@ -19,8 +19,6 @@ export default function Classify () {
   const [introduce, setIntroduce] = useState(initialState)
   const { params } = useRouter()
 
-  setNavigationBarTitle({ title: '分类介绍' })
-
   useEffect(() => {
     setIntroduce(garbageClassifyArray[params.type])
   }, [])
@@ -34,4 +32,8 @@ export default function Classify () {
       <View>{introduce.tip}</View>
     </View>
   )
+}
+
+Classify.config = {
+  navigationBarTitleText: '分类介绍'
 }
